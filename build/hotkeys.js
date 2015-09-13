@@ -53,7 +53,7 @@
     this.template = '<div class="cfp-hotkeys-container fade" ng-class="{in: helpVisible}" style="display: none;"><div class="cfp-hotkeys">' +
                       '<h4 class="cfp-hotkeys-title" ng-if="!header">{{ title }}</h4>' +
                       '<div ng-bind-html="header" ng-if="header"></div>' +
-                      '<table><tbody>' +
+                      '<table><thead><tr><th>Key</th><th>Description</th></tr></thead><tbody>' +
                         '<tr ng-repeat="hotkey in hotkeys | filter:{ description: \'!$$undefined$$\' }">' +
                           '<td class="cfp-hotkeys-keys">' +
                             '<span ng-repeat="key in hotkey.format() track by $index" class="cfp-hotkeys-key">{{ key }}</span>' +
@@ -62,7 +62,7 @@
                         '</tr>' +
                       '</tbody></table>' +
                       '<div ng-bind-html="footer" ng-if="footer"></div>' +
-                      '<div class="cfp-hotkeys-close" ng-click="toggleCheatSheet()">×</div>' +
+                      '<button class="cfp-hotkeys-close" ng-click="toggleCheatSheet()">×</button>' +
                     '</div></div>';
 
     /**
@@ -1034,7 +1034,7 @@
     }
 
     function _belongsTo(element, ancestor) {
-        if (element === document) {
+        if (element === null || element === document) {
             return false;
         }
 
